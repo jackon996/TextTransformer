@@ -5,9 +5,6 @@ public class TextDecorator implements IText {
 
     protected IText textInput;
 
-    /**
-     * @param textInput to be transformed.
-     */
     public TextDecorator(IText textInput){
         this.textInput = textInput;
     }

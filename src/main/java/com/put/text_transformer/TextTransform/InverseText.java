@@ -9,6 +9,10 @@ public class InverseText extends TextDecorator {
         super(textInput);
     }
 
+    /**
+     * Odwrócenie kolejności liter w zdaniu z zachowaniem kolejnosci wielkich liter
+     * @return zwrócenie przetworzonego tekstu
+     */
     @Override
     public String transform(){
         String text = textInput.transform();

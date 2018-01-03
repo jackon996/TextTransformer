@@ -9,6 +9,10 @@ public class LowerText extends TextDecorator {
         super(textInput);
     }
 
+    /**
+     * zamiana liter na małe litery
+     * @return zwrócenie przetworzonego tekstu
+     */
     @Override
     public String transform(){
         String text = textInput.transform();

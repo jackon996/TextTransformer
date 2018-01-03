@@ -12,6 +12,9 @@ public class TextInput implements IText {
         this.text = text;
     }
 
+    /**
+     * @return zwrócenie oryginalnego tekstu
+     */
     @Override
     public String transform() {
         return this.text;

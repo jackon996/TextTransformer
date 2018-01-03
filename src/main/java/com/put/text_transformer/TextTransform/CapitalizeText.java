@@ -13,6 +13,10 @@ public class CapitalizeText extends TextDecorator{
         super(textInput);
     }
 
+    /**
+     * Zamiana pierwszych liter w słowie na wielkie litery
+     * @return zwrócenie przetworzonego tekstu
+     */
     @Override
     public String transform(){
         String text = textInput.transform();

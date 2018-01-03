@@ -19,6 +19,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/transform")
 public class TransformController {
 
+    /**
+     * wykonanie rządania GET
+     * @param text  tekst do przetworzenia
+     * @param transformTable nazwy kolejnych transformacji
+     * @return  zwrócenie przetworzonego tekstu
+     */
     @RequestMapping(value ="", method = RequestMethod.GET)
     public String getText(@RequestParam("text") String text,
                             @RequestParam("transformTable") String[] transformTable){

@@ -9,7 +9,11 @@ public class AbbreviatorText extends TextDecorator {
     }
 
 
-
+    /**
+     * Zwijanie wybranych skrótów
+     * @param text - tekst do przetworzenia
+     * @return  przetworzony tekst
+     */
     public String abbreviator(String text){
         String np = "na przykład";
         while(text.toLowerCase().contains(np)){
@@ -29,6 +33,10 @@ public class AbbreviatorText extends TextDecorator {
         return text;
     }
 
+    /**
+     * wywolanie metody do przetworzenia tekstu
+     * @return  zwrócenie przetworzonego tekstu
+     */
     @Override
     public String transform() {
         return abbreviator(super.transform());
