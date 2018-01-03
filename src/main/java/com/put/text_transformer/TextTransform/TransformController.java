@@ -37,6 +37,10 @@ public class TransformController {
                 System.out.println("Lowering text...");
                 textDecorator = new LowerText(textDecorator);
             }
+            if(transformation.equals("capitalize")){
+                System.out.println("Capitalizing text");
+                textDecorator = new CapitalizeText(textDecorator);
+            }
         }
 
 
