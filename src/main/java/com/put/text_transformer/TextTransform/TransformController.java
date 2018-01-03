@@ -38,8 +38,12 @@ public class TransformController {
                 textDecorator = new LowerText(textDecorator);
             }
             if(transformation.equals("capitalize")){
-                System.out.println("Capitalizing text");
+                System.out.println("Capitalizing text...");
                 textDecorator = new CapitalizeText(textDecorator);
+            }
+            if(transformation.equals("abbreviation")){
+                System.out.println("Abbreviationing text...");
+                textDecorator = new AbbreviatorText(textDecorator);
             }
         }
 

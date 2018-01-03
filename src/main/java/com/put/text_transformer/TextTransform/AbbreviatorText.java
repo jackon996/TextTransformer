@@ -3,8 +3,8 @@ package com.put.text_transformer.TextTransform;
 /**
  * Created by kacol on 03.01.18.
  */
-public class TextAbbreviator extends TextDecorator {
-    public TextAbbreviator(IText textInput) {
+public class AbbreviatorText extends TextDecorator {
+    public AbbreviatorText(IText textInput) {
         super(textInput);
     }
 
