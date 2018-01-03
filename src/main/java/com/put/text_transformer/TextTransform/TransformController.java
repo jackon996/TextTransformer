@@ -1,10 +1,16 @@
 package com.put.text_transformer.TextTransform;
 
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Master Faster on 03.01.2018.
@@ -32,6 +38,7 @@ public class TransformController {
                 textDecorator = new LowerText(textDecorator);
             }
         }
+
 
         return textDecorator.transform();
     }
