@@ -1,7 +1,7 @@
 package com.put.text_transformer.TextTransformTests;
 
 import com.put.text_transformer.TextTransform.CapitalizeText;
-import com.put.text_transformer.TextTransform.TextAbbreviator;
+import com.put.text_transformer.TextTransform.AbbreviatorText;
 import com.put.text_transformer.TextTransform.TextInput;
 import org.junit.Test;
 
