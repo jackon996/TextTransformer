@@ -21,6 +21,8 @@ public class TextAbbreviatorTest {
         assertEquals("M.iN. Kuba nie zrobił nic przy projekcie",new AbbreviatorText(new TextInput("Między iNnymi Kuba nie zrobił nic przy projekcie")).transform());
         assertEquals("AAa itp. Bba",new AbbreviatorText(new TextInput("AAa i tym podobne Bba")).transform());
         assertEquals("Itp.",new AbbreviatorText(new TextInput("I tym podobne")).transform());
+        assertEquals("", new AbbreviatorText(new TextInput("")).transform());
+
     }
 
 
