@@ -1,5 +1,7 @@
 package com.put.text_transformer.TextTransform;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -17,7 +19,7 @@ public class TransformController {
      * @return  zwrócenie przetworzonego tekstu
      */
     @RequestMapping(value ="", method = RequestMethod.POST, produces = "application/json")
-    public void getText(@RequestBody TextInput textInput){
+    public ResponseEntity<TextInput> getText(@RequestBody TextInput textInput){
         TextDecorator textDecorator = new TextDecorator(textInput);
         for(String transformation : textInput.getTransformTable()){
             if(transformation.equals("inverse")){
@@ -42,7 +44,9 @@ public class TransformController {
             }
         }
 
-        System.out.println(textDecorator.transform());
+        TextInput response = new TextInput(textDecorator.transform(), textInput.getTransformTable());
+        System.out.println("Transformed: ".concat(response.getText()));
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }
