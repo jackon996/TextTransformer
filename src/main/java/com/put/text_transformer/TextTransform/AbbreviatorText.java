@@ -4,10 +4,13 @@ package com.put.text_transformer.TextTransform;
  * Klasa zawijająca skróty "na przykład" -> "np.". Uwzględnia rozmiar liter.
  */
 public class AbbreviatorText extends TextDecorator {
+    /**
+     * Konstruktor będący dekoratorem.
+     * @param textInput Interfejs zapewniający możliwość transformacji na tekście.
+     */
     public AbbreviatorText(IText textInput) {
         super(textInput);
     }
-
 
     /**
      * Przetwarzanie wybranych wyrazów na skróty.

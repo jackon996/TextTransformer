@@ -6,7 +6,10 @@ import org.springframework.util.StringUtils;
  * Klasa przekształcająca tekst w kapitaliki.
  */
 public class CapitalizeText extends TextDecorator{
-
+    /**
+     * Konstruktor będący dekoratorem.
+     * @param textInput Interfejs zapewniający możliwość transformacji na tekście.
+     */
     public CapitalizeText(IText textInput){
         super(textInput);
     }
