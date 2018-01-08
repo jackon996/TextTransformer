@@ -2,10 +2,7 @@ package com.put.text_transformer.TextTransform;
 
 
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,16 +18,13 @@ public class TransformController {
 
     /**
      * wykonanie rządania GET
-     * @param text  tekst do przetworzenia
-     * @param transformTable nazwy kolejnych transformacji
+     //* @param textInput  tekst do przetworzenia wraz z kolejnymi transformacjami
      * @return  zwrócenie przetworzonego tekstu
      */
-    @RequestMapping(value ="", method = RequestMethod.GET)
-    public String getText(@RequestParam("text") String text,
-                            @RequestParam("transformTable") String[] transformTable){
-        TextInput textInput = new TextInput(text);
+    @RequestMapping(value ="", method = RequestMethod.POST, produces = "application/json")
+    public void getText(@RequestBody TextInput textInput){
         TextDecorator textDecorator = new TextDecorator(textInput);// = new UpperText(new InverseText(textInput));
-        for(String transformation : transformTable){
+        for(String transformation : textInput.getTransformTable()){
             if(transformation.equals("inverse")){
                 System.out.println("Inversing text...");
                 textDecorator = new InverseText(textDecorator);
@@ -53,8 +47,8 @@ public class TransformController {
             }
         }
 
-
-        return textDecorator.transform();
+        System.out.println(textDecorator.transform());
+        //return textDecorator.transform();
     }
 
 }
