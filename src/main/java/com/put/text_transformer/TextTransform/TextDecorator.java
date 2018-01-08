@@ -1,6 +1,8 @@
 package com.put.text_transformer.TextTransform;
 
-
+/**
+ * Klasa dekoratora.
+ */
 public class TextDecorator implements IText {
 
     protected IText textInput;

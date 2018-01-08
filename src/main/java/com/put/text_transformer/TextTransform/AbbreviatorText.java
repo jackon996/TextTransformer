@@ -1,7 +1,6 @@
 package com.put.text_transformer.TextTransform;
 
 /**
- * Created by kacol on 03.01.18.
  * Klasa zawijająca skróty "na przykład" -> "np.". Uwzględnia rozmiar liter.
  */
 public class AbbreviatorText extends TextDecorator {

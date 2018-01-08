@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- * Created by Master Faster on 03.01.2018.
  * Kontroler uruchamiający odpowiednie metody w zależności od polecenia w sekwencji.
  */
 @RestController

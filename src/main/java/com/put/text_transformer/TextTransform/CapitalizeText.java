@@ -2,7 +2,9 @@ package com.put.text_transformer.TextTransform;
 
 import org.springframework.util.StringUtils;
 
-
+/**
+ * Klasa przekształcająca tekst w kapitaliki.
+ */
 public class CapitalizeText extends TextDecorator{
 
     public CapitalizeText(IText textInput){
