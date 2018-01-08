@@ -10,7 +10,7 @@ public class TextDecorator implements IText {
     }
 
     /**
-     * @return Transformation.
+     * @return Transformation Tekst po dokonanej transformacji.
      */
     @Override
     public String transform() {

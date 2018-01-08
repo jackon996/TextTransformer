@@ -21,7 +21,7 @@ public class InverseText extends TextDecorator {
         String inversedText="";
         for(int i = 0;i <buffer.length();i++)
         {
-            if(Character.isUpperCase(text.charAt(i))==true)
+            if(Character.isUpperCase(text.charAt(i)))
             {
                 inversedText+=Character.toUpperCase(buffer2.charAt(i));
             }

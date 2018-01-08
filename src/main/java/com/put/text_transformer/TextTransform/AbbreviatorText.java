@@ -2,6 +2,7 @@ package com.put.text_transformer.TextTransform;
 
 /**
  * Created by kacol on 03.01.18.
+ * Klasa zawijająca skróty "na przykład" -> "np.". Uwzględnia rozmiar liter.
  */
 public class AbbreviatorText extends TextDecorator {
     public AbbreviatorText(IText textInput) {
@@ -10,9 +11,9 @@ public class AbbreviatorText extends TextDecorator {
 
 
     /**
-     * Zwijanie wybranych skrótów
-     * @param text - tekst do przetworzenia
-     * @return  przetworzony tekst
+     * Przetwarzanie wybranych wyrazów na skróty.
+     * @param text Tekst do przetworzenia z rozwiniętym skrótem.
+     * @return  Przetworzony tekst.
      */
     public String abbreviator(String text){
         String np = "na przykład";
@@ -34,8 +35,8 @@ public class AbbreviatorText extends TextDecorator {
     }
 
     /**
-     * wywolanie metody do przetworzenia tekstu
-     * @return  zwrócenie przetworzonego tekstu
+     * Implementacja interfejsu.
+     * @return  Tekst zawierający wyvrane, zwinięte skróty.
      */
     @Override
     public String transform() {
