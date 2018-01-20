@@ -1,0 +1,4 @@
+{
+  "text" : "hello World",
+  "transformTable" : ["upper", "inverse"]
+}

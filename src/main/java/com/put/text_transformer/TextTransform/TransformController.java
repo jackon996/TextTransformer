@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Kontroler uruchamiający odpowiednie metody w zależności od polecenia w sekwencji.
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/transform")
 public class TransformController {

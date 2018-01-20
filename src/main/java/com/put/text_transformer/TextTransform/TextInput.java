@@ -13,6 +13,10 @@ public class TextInput implements IText {
      */
     private String[] transformTable;
 
+    public TextInput(){
+
+    }
+
     /**
      * Konstruktor używany do tworzenia odpowiedzi.
      * @param text Tekst, który został przetransformowany.

@@ -1,0 +1,150 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html"/>
+<link rel="import" href="../../bower_components/paper-radio-group/paper-radio-group.html"/>
+<link rel="import" href="../../bower_components/paper-radio-button/paper-radio-button.html"/>
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html"/>
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html"/>
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html"/>
+<dom-module id="my-test-transformer">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button.darkBlue{
+        background-color: darkblue;
+        color: white;
+        /*display: block;*/
+        width: 15%;
+        margin-left: 0px;
+      }
+      paper-button.transformationButton{
+          width: 15%;
+          background-color: #00b0ff;
+          margin-right: 0px;
+          margin-left: 0px;
+          margin-top: 5px;
+      }
+      paper-radio-button{
+        display: block;
+      }
+      paper-textarea{
+        width: 50%;
+      }
+    </style>
+
+
+    <paper-radio-group selected="{{transformSelected}}">
+      <paper-radio-button  name="inverse">Inverse</paper-radio-button>
+      <paper-radio-button name="upper">Upper</paper-radio-button>
+      <paper-radio-button name="lower">Lower</paper-radio-button>
+      <paper-radio-button name="capitalize">Capitalize</paper-radio-button>
+      <paper-radio-button name="abbreviation">Abbreviation</paper-radio-button>
+    </paper-radio-group>
+
+    <paper-textarea value="{{textToTransform}}" label="Text to transform"></paper-textarea>
+
+    <paper-textarea label="disabled input" value="{{response}}"></paper-textarea>
+
+    <paper-button on-click="addTransformation" raised class="darkBlue">Add</paper-button>
+    <paper-button on-click="transformText" raised class="darkBlue">Transform</paper-button>
+    <br/>
+
+    <template is="dom-repeat" items="[[transformations]]" id="transformationsList">
+      <template is="dom-if" if="{{ifFirst(item)}}">
+        <iron-icon icon="icons:arrow-forward"></iron-icon>
+      </template>
+      <paper-button class="transformationButton" raised on-click="removeTransformation">{{item.transformation}}</paper-button>
+
+    </template>
+
+      <iron-ajax
+              id="ajaxRequest"
+              url="http://localhost:8081/transform"
+              method = "POST"
+              body='{"text" : "{{textToTransform}}", "transformTable" : [ {{requestTransformations}} ] }'
+              content-type="application/json"
+              on-response="handleResponse"
+              last-response="{{jsondata}}"
+              ></iron-ajax>
+
+  </template>
+
+  <script>
+      // body='{"text" : "{{textToTransform}}", "transformTable" : [ "abbreviation","inverse", "capitalize"] }'
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MyTestTransformer extends Polymer.Element {
+      static get is() { return 'my-test-transformer'; }
+      static get properties() {
+        return{
+            transformations: {
+                type: Array,
+                value: []
+            },
+            singleTransformation: {
+                type:Object,
+                value: {}
+            },
+            requestTransformations:{
+                type: Array,
+                value: []
+            },
+            //response: String
+        }
+      }
+
+      addTransformation(){
+          if(this.transformSelected !== undefined) {
+              let singleTransformation = {};
+              singleTransformation.id = this.transformations.length;
+              singleTransformation.transformation = this.transformSelected;
+              this.push('transformations', singleTransformation);
+              this.push('requestTransformations', "\"".concat((this.transformSelected).concat("\"")))
+          }
+      }
+
+        /**
+         * remove item from transformations array
+         * @param item
+         */
+      removeTransformation(item){
+          var singleTransformation = this.$.transformationsList.itemForElement(item.target);
+          var index = this.transformations.indexOf(singleTransformation)
+          this.splice('transformations',index,1)
+          this.splice('requestTransformations', index,1)
+      }
+
+        /**
+         * check if item is first in transformations array
+         * @param item
+         * @returns {boolean}
+         */
+      ifFirst(item){
+          var firstTransformation = this.get(['transformations',0])
+          if(firstTransformation == item){
+              return false;
+          }
+          return true;
+      }
+
+      transformText(){
+          // let array = this.transformations.transforrmation
+          // console.log(array)
+          //this.$.ajaxRequest.body = ' {"text" : "{{textToTransform}}", "transformTable" : [ "abbreviation","inverse", "capitalize"] }';
+          this.$.ajaxRequest.generateRequest();
+      }
+
+      handleResponse(response){
+          console.log(response.detail.response)
+          this.response = response.detail.response["text"]
+      }
+
+    }
+
+    window.customElements.define(MyTestTransformer.is, MyTestTransformer);
+  </script>
+</dom-module>
