@@ -49,6 +49,10 @@ public class TransformController {
                 logger.info("Abbreviationing text...");
                 textDecorator = new AbbreviatorText(textDecorator);
             }
+            if(transformation.equals("expand")){
+                logger.info("Expanding text...");
+                textDecorator = new ExpandText(textDecorator);
+            }
         }
 
         TextInput response = new TextInput(textDecorator.transform(), textInput.getTransformTable());
