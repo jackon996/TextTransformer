@@ -12,10 +12,21 @@ import static org.junit.Assert.assertEquals;
 public class InverseTextTest {
 
     @Test
-    public void inverse(){
+    public void simpleWords(){
         assertEquals("alo", new InverseText(new TextInput("ola")).transform());
+        assertEquals("przedpokoj", new InverseText(new TextInput("jokopdezrp")).transform());
+
+    }
+    @Test
+    public void sentences(){
+        assertEquals("Atok am ala", new InverseText(new TextInput("Ala ma kota")).transform());
+        assertEquals("Ela am Tok", new InverseText(new TextInput("Kot ma Ale")).transform());
+    }
+    @Test
+    public void lowerUpperCases(){
         assertEquals("darnok alo", new InverseText(new TextInput("ola konrad")).transform());
         assertEquals("Darnok alO", new InverseText(new TextInput("Ola koNraD")).transform());
         assertEquals("Darnok9alO", new InverseText(new TextInput("Ola9koNraD")).transform());
     }
+
 }
