@@ -1,8 +1,11 @@
 package com.put.text_transformer.TextTransform;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 
 /**
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/transform")
 public class TransformController {
-
+    final Logger logger = LoggerFactory.getLogger(TransformController.class);
     /**
      * Wykonanie żądania POST
      * @param textInput  tekst do przetworzenia wraz z kolejnymi transformacjami
@@ -21,31 +24,35 @@ public class TransformController {
     @RequestMapping(value ="", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<TextInput> getText(@RequestBody TextInput textInput){
         TextDecorator textDecorator = new TextDecorator(textInput);
+        if(textInput.getText().isEmpty())
+        {
+            logger.warn("Input text is empty!");
+        }
         for(String transformation : textInput.getTransformTable()){
             if(transformation.equals("inverse")){
-                System.out.println("Inversing text...");
+                logger.info("Inversing text...");
                 textDecorator = new InverseText(textDecorator);
             }
             if(transformation.equals("upper")){
-                System.out.println("Uppering text...");
+                logger.info("Uppering text...");
                 textDecorator = new UpperText(textDecorator);
             }
             if(transformation.equals("lower")){
-                System.out.println("Lowering text...");
+                logger.info("Lowering text...");
                 textDecorator = new LowerText(textDecorator);
             }
             if(transformation.equals("capitalize")){
-                System.out.println("Capitalizing text...");
+                logger.info("Capitalizing text...");
                 textDecorator = new CapitalizeText(textDecorator);
             }
             if(transformation.equals("abbreviation")){
-                System.out.println("Abbreviationing text...");
+                logger.info("Abbreviationing text...");
                 textDecorator = new AbbreviatorText(textDecorator);
             }
         }
 
         TextInput response = new TextInput(textDecorator.transform(), textInput.getTransformTable());
-        System.out.println("Transformed: ".concat(response.getText()));
+        logger.info("Transformed: ".concat(response.getText()));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
