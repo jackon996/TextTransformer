@@ -1,18 +1,27 @@
 package com.put.text_transformer.TextTransformTests;
 
 import com.put.text_transformer.TextTransform.CapitalizeText;
+import com.put.text_transformer.TextTransform.IText;
+import com.put.text_transformer.TextTransform.InverseText;
 import com.put.text_transformer.TextTransform.TextInput;
 import org.junit.Test;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class CapitalizeTextTest {
 
     @Test
-    public void oneWord() throws Exception {
-        assertEquals("Ala",new CapitalizeText(new TextInput("ala")).transform());
-        assertEquals(" Ala",new CapitalizeText(new TextInput(" ala")).transform());
+    public void oneWordMock() throws Exception {
+        IText mockObject = mock(IText.class);
+        when(mockObject.transform()).thenReturn("ala");
+        CapitalizeText testedObject = new CapitalizeText(mockObject);
+        String result = testedObject.transform();
+        verify(mockObject).transform();
+        assertEquals("Ala", result);
     }
     @Test
     public void multipleWords() throws Exception {
