@@ -36,27 +36,27 @@
 
 
     <paper-radio-group selected="{{transformSelected}}">
-      <paper-radio-button  name="inverse">Inverse</paper-radio-button>
-      <paper-radio-button name="upper">Upper</paper-radio-button>
-      <paper-radio-button name="lower">Lower</paper-radio-button>
-      <paper-radio-button name="capitalize">Capitalize</paper-radio-button>
-      <paper-radio-button name="abbreviation">Abbreviation</paper-radio-button>
-      <paper-radio-button name="expand">Expanding</paper-radio-button>
+      <paper-radio-button id="inverseRadioButton" name="inverse">Inverse</paper-radio-button>
+      <paper-radio-button id="upperRadioButton" name="upper">Upper</paper-radio-button>
+      <paper-radio-button id="lowerRadioButton" name="lower">Lower</paper-radio-button>
+      <paper-radio-button id="capitalizeRadioButton" name="capitalize">Capitalize</paper-radio-button>
+      <paper-radio-button id="abbreviationRadioButton" name="abbreviation">Abbreviation</paper-radio-button>
+      <paper-radio-button id="expandRadioButton" name="expand">Expand</paper-radio-button>
     </paper-radio-group>
 
-    <paper-textarea value="{{textToTransform}}" label="Text to transform"></paper-textarea>
+    <paper-textarea id="inputTextArea" value="{{textToTransform}}" label="Text to transform"></paper-textarea>
 
-    <paper-textarea label="disabled input" value="{{response}}"></paper-textarea>
+    <paper-textarea id="resultTextArea" readonly label="Result" value="{{response}}"></paper-textarea>
 
-    <paper-button on-click="addTransformation" raised class="darkBlue">Add</paper-button>
-    <paper-button on-click="transformText" raised class="darkBlue">Transform</paper-button>
+    <paper-button id="addButton" on-click="addTransformation" raised class="darkBlue">Add</paper-button>
+    <paper-button id="transformButton" on-click="transformText" raised class="darkBlue">Transform</paper-button>
     <br/>
 
     <template is="dom-repeat" items="[[transformations]]" id="transformationsList">
       <template is="dom-if" if="{{ifFirst(item)}}">
         <iron-icon icon="icons:arrow-forward"></iron-icon>
       </template>
-      <paper-button class="transformationButton" raised on-click="removeTransformation">{{item.transformation}}</paper-button>
+      <paper-button  class="transformationButton" raised on-click="removeTransformation">{{item.transformation}}</paper-button>
 
     </template>
 
