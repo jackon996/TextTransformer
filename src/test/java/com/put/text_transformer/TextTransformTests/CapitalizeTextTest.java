@@ -17,11 +17,11 @@ public class CapitalizeTextTest {
     @Test
     public void oneWordMock() throws Exception {
         IText mockObject = mock(IText.class);
-        when(mockObject.transform()).thenReturn("ala");
+        when(mockObject.transform()).thenReturn("alo");
         CapitalizeText testedObject = new CapitalizeText(mockObject);
         String result = testedObject.transform();
         verify(mockObject).transform();
-        assertEquals("Ala", result);
+        assertEquals("Alo", result);
     }
     @Test
     public void multipleWords() throws Exception {
